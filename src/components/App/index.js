@@ -14,7 +14,7 @@ import * as ROUTES from '../../constants/routes';
 import { withAuthentication } from '../Session';
 import * as actions from './constants';
 
-const App = ({ appLoading, appLoaded, appFailed, error, isLoading }) => {
+const App = ({ appLoading, appLoaded }) => {
 
   
   useEffect(() => {
@@ -52,7 +52,6 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  appLoading: (bool) => dispatch({ type: actions.SET_PROGRESS_BAR, isOpen: bool }),
   appLoading: () => dispatch({ type: actions.APP_LOADING }),
   appLoaded: () => dispatch({ type: actions.APP_LOADED }),
   appFailed: () => dispatch({ type: actions.APP_FAILED }),
