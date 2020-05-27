@@ -8,11 +8,12 @@ import { connect } from 'react-redux';
 import Navigation from '../Navigation';
 
 
-import { AboutPage, AdminPage, AccountPage, HomePage, LandingPage, SignInPage, SignUpPage, PasswordForgetPage } from '../../containers';
+import { AboutPage, AdminPage, AccountPage, HomePage, LandingPage, SignInPage, SignOutPage, SignUpPage, PasswordForgetPage } from '../../containers';
 
 import * as ROUTES from '../../constants/routes';
 import { withAuthentication } from '../Session';
 import * as actions from './constants';
+import ResponsiveNavbar from '../ResponsiveNavbar';
 
 const App = ({ appLoading, appLoaded }) => {
 
@@ -29,18 +30,18 @@ const App = ({ appLoading, appLoaded }) => {
     <Router>
 
       <div>
-        <Navigation />
+        <ResponsiveNavbar>
+          <Route exact path={ROUTES.LANDING} component={LandingPage} />
+          <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
+          <Route path={ROUTES.SIGN_IN} component={SignInPage} />
+          <Route path={ROUTES.SIGN_OUT} component={SignOutPage} />
+          <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage} />
+          <Route path={ROUTES.HOME} component={HomePage} />
+          <Route path={ROUTES.ACCOUNT} component={AccountPage} />
+          <Route path={ROUTES.ABOUT} component={AboutPage} />
+          <Route path={ROUTES.ADMIN} component={AdminPage} />
+        </ResponsiveNavbar>
   
-        <hr />
-  
-        <Route exact path={ROUTES.LANDING} component={LandingPage} />
-        <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
-        <Route path={ROUTES.SIGN_IN} component={SignInPage} />
-        <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage} />
-        <Route path={ROUTES.HOME} component={HomePage} />
-        <Route path={ROUTES.ACCOUNT} component={AccountPage} />
-        <Route path={ROUTES.ABOUT} component={AboutPage} />
-        <Route path={ROUTES.ADMIN} component={AdminPage} />
       </div>
     </Router>
       );

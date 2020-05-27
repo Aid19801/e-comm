@@ -1,51 +1,60 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import SignOutButton from '../SignOut';
 import * as ROUTES from '../../constants/routes';
 import { AuthUserContext } from '../Session';
+import { Menu } from 'semantic-ui-react';
+import brand from '../../brand.json';
+import './styles.css';
 
-const Navigation = (props) => (
-  <div>
+
+const Navigation = () => (
+  <React.Fragment>
     <AuthUserContext.Consumer>
-      {authUser => 
+      {authUser =>
         authUser ? <NavigationAuth /> : <NavigationNonAuth />
       }
     </AuthUserContext.Consumer>
-  </div>
+  </React.Fragment>
 );
 
 const NavigationAuth = () => (
-  <ul>
-    <li>
-      <Link to={ROUTES.LANDING}>Landing</Link>
-    </li>
-    <li>
-      <Link to={ROUTES.HOME}>Home</Link>
-    </li>
-    <li>
-      <Link to={ROUTES.ACCOUNT}>Account</Link>
-    </li>
-    <li>
-      <Link to={ROUTES.ADMIN}>Admin</Link>
-    </li>
-    <li>
+  <React.Fragment>
+    <Menu.Item name='Landing'>
+      <Link to={ROUTES.LANDING}>Logo</Link>
+    </Menu.Item>
+
+    <Menu.Item name='About'>
       <Link to={ROUTES.ABOUT}>About</Link>
-    </li>
-    <li>
-      <SignOutButton />
-    </li>
-  </ul>
+    </Menu.Item>
+
+    <Menu.Item name='Account'>
+      <Link to={ROUTES.ACCOUNT}>Account</Link>
+    </Menu.Item>
+
+    <Menu.Item name='Admin'>
+      <Link to={ROUTES.ADMIN}>Admin</Link>
+    </Menu.Item>
+
+    <Menu.Item name='signout' position='right'>
+      <Link to={ROUTES.SIGN_OUT}>Signout</Link>
+    </Menu.Item>
+  </React.Fragment>
 );
 
 const NavigationNonAuth = () => (
-  <ul>
-    <li>
-      <Link to={ROUTES.LANDING}>Landing</Link>
-    </li>
-    <li>
+  <React.Fragment>
+    <Menu.Item name='Landing'>
+      <Link to={ROUTES.LANDING}>{brand.brand}</Link>
+    </Menu.Item>
+
+    <Menu.Item
+      name='Sign In'
+      position='right'
+    >
       <Link to={ROUTES.SIGN_IN}>Sign In</Link>
-    </li>
-  </ul>
+    </Menu.Item>
+
+  </React.Fragment>
 );
 
 export default Navigation;

@@ -9,6 +9,8 @@ import passwordChangeFormReducer from '../containers/account-page/pw-change-redu
 import passwordForgetPageReducer from '../containers/password-forget-page/reducer';
 import signinPageReducer from '../containers/signin-page/reducer';
 import signupPageReducer from '../containers/signup-page/reducer';
+import signoutPageReducer from '../containers/signout-page/reducer';
+import loginReducer from '../components/Login/reducer';
 
 const RootReducer = combineReducers({
     appState: appStateReducer,
@@ -21,6 +23,9 @@ const RootReducer = combineReducers({
     passwordChangeForm: passwordChangeFormReducer,
     signinPage: signinPageReducer,
     signupPage: signupPageReducer,
+    signoutPage: signoutPageReducer,
+
+    login: loginReducer,
 })
 
 export default RootReducer;

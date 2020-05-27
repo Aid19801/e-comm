@@ -3,20 +3,21 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 
-import { SignUpLink } from '../signup-page';
 import { withFirebase } from '../../components/Firebase';
 import withProgressBar from '../../components/ProgressBar/with-progressBar';
-import Login from '../../components/Login';
-
-import * as ROUTES from '../../constants/routes';
 import * as actions from './constants';
-import { PasswordForgetLink } from '../password-forget-page';
 
-class SignInFormBase extends Component {
+class SignOutFormBase extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+  
 
   componentWillMount() {
     this.props.showProgressBar(true);
     this.props.pageLoading();
+    this.props.firebase.doSignOut();
   }
 
   componentDidMount() {
@@ -27,37 +28,36 @@ class SignInFormBase extends Component {
   }
 
   render() {
+
     return (
-      <Login onSubmit={this.onSubmit} />
+      <h1>you are now signed out.</h1>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  isLoading: state.signinPage.isLoading,
+  isLoading: state.signoutPage.isLoading,
 })
 const mapDispatchToProps = dispatch => ({
-  pageLoading: () => dispatch({ type: actions.SIGNIN_PAGE_LOADING }),
-  pageLoaded: () => dispatch({ type: actions.SIGNIN_PAGE_LOADED }),
+  pageLoading: () => dispatch({ type: actions.SIGNOUT_PAGE_LOADING }),
+  pageLoaded: () => dispatch({ type: actions.SIGNOUT_PAGE_LOADED }),
 })
 
 
-const SignInForm = compose(
+const SignOutForm = compose(
   withRouter,
   withFirebase,
   withProgressBar,
   connect(mapStateToProps, mapDispatchToProps),
-)(SignInFormBase);
+)(SignOutFormBase);
 
-const SignInPage = () => (
+const SignOutPage = () => (
     <div>
-      <h1>SignIn</h1>
-      <SignInForm />
-      <PasswordForgetLink />
-      <SignUpLink />
+      <h1>SignOut</h1>
+      <SignOutForm />
     </div>
 );
 
-export default SignInPage;
+export default SignOutPage;
 
-export { SignInForm };
+export { SignOutForm };

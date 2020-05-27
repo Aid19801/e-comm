@@ -6,6 +6,7 @@ import LandingPage from './landing-page';
 import PasswordForgetPage from './password-forget-page';
 import SignInPage from './signin-page';
 import SignUpPage from './signup-page';
+import SignOutPage from './signout-page';
 
 export {
     AboutPage,
@@ -16,4 +17,5 @@ export {
     PasswordForgetPage,
     SignInPage,
     SignUpPage,
+    SignOutPage,
 }
