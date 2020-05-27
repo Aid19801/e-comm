@@ -62,7 +62,9 @@ class DesktopContainer extends Component {
 class MobileContainer extends Component {
     state = {}
 
-    handleSidebarHide = () => this.setState({ sidebarOpened: false })
+    handleSidebarHide = () => {
+        this.setState({ sidebarOpened: false })
+    }
 
     handleToggle = () => this.setState({ sidebarOpened: true })
 
@@ -83,7 +85,7 @@ class MobileContainer extends Component {
                     vertical
                     visible={sidebarOpened}
                 >
-                    <Navigation />
+                    <Navigation hideSideBar={this.handleSidebarHide} />
                 </Sidebar>
 
                 <Sidebar.Pusher dimmed={sidebarOpened}>
