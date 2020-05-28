@@ -1,17 +1,39 @@
 import React, { useState } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { withFirebase } from '../Firebase';
-import { withRouter } from 'react-router-dom';
-import * as ROUTES from '../../constants/routes';
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react';
+import { withRouter } from 'react-router-dom';
+import { createUseStyles } from 'react-jss';
+import { withFirebase } from '../Firebase';
+import LoadingSpinner from '../LoadingSpinner';
+import * as ROUTES from '../../constants/routes';
 import * as actions from './constants';
+import brand from '../../brand.json';
 
-function Login({ onSubmit, firebase, history, updateStateUserLoginFailed, updateStateUserIsLoggingIn, updateStateUserIsLoggedIn }) {
+const useStyles = createUseStyles({
+    header: {
+        color: `${brand.color_light} !important`,
+    },
+    button: {
+        backgroundColor: `${brand.color_dark} !important`,
+        color: `${brand.color_light} !important`,
+    },
+    segment: {
+        backgroundColor: `${brand.color_light} !important`,
+    },
+    error: {
+        color: 'darkred',
+        marginTop: '14px !important',
+    }
+})
+
+function Login({ onSubmit, isLoading, firebase, history, updateStateUserLoginFailed, updateStateUserIsLoggingIn, updateStateUserIsLoggedIn }) {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+
+    const classes = useStyles();
 
     const handleOnChange = (event) => {
         event.target.name === 'email' ? setEmail(event.target.value) : setPassword(event.target.value);
@@ -32,16 +54,22 @@ function Login({ onSubmit, firebase, history, updateStateUserLoginFailed, update
         setPassword('');
         event.preventDefault();
     }
+
+    if(isLoading) {
+        return <LoadingSpinner />
+    }
+
     return (
         <Grid textAlign='center' style={{ height: 'auto' }} verticalAlign='middle'>
             <Grid.Column style={{ maxWidth: 450 }}>
-                <Header as='h2' color='teal' textAlign='center'>
+
+                <Header as='h2' textAlign='center' className={classes.header}>
                     <Image src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/female1-512.png" />
                     Log-in to your account
                 </Header>
 
                 <Form size='large' onSubmit={handleSubmit}>
-                    <Segment stacked>
+                    <Segment stacked className={classes.segment}>
                         <Form.Input
                             fluid icon='user'
                             iconPosition='left'
@@ -63,24 +91,24 @@ function Login({ onSubmit, firebase, history, updateStateUserLoginFailed, update
                             placeholder="Password"
                         />
 
-                        <Button color='teal' fluid size='large'>
+                        <Button fluid size='large' className={classes.button}>
                             Sign In
                         </Button>
+
+                        {error && <p className={classes.error}>{error.message}</p>}
 
                     </Segment>
 
                 </Form>
-                <Message>
-                    New to us? <a href='#'>Sign Up</a>
-                </Message>
-                {error && <p>{error.message}</p>}
+
+
             </Grid.Column>
         </Grid>
     );
 }
 
 const mapStateToProps = state => ({
-    isLoading: state.signinPage.isLoading,
+    isLoading: state.login.isLoading,
 });
 
 const mapDispatchToProps = dispatch => ({

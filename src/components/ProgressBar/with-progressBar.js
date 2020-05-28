@@ -1,5 +1,15 @@
 import React, { Component } from 'react';
 import TopBarProgress from 'react-topbar-progress-indicator';
+import brand from '../../brand.json';
+
+TopBarProgress.config({
+  barColors: {
+    "0": brand.color_light,
+    "1.0": brand.color_superlight
+  },
+  shadowBlur: 100,
+  barThickness: 5,
+});
 
 const withProgressBar = PlatformSpecificComponent => {
   return class extends Component {

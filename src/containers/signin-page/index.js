@@ -1,36 +1,32 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
-
-import { SignUpLink } from '../signup-page';
-import { withFirebase } from '../../components/Firebase';
 import withProgressBar from '../../components/ProgressBar/with-progressBar';
 import Login from '../../components/Login';
-
-import * as ROUTES from '../../constants/routes';
+import Title from '../../components/Title';
+import MessageLink from '../../components/MessageLink';
 import * as actions from './constants';
-import { PasswordForgetLink } from '../password-forget-page';
+import * as ROUTES from '../../constants/routes';
 
-class SignInFormBase extends Component {
 
-  componentWillMount() {
-    this.props.showProgressBar(true);
-    this.props.pageLoading();
-  }
+function SignInFormBase({ showProgressBar, pageLoading, pageLoaded }) {
+  
+  useEffect(() => {
+    showProgressBar(true);
+    pageLoading();
+  }, []);
 
-  componentDidMount() {
-    setTimeout(() => {
-      this.props.showProgressBar(false);
-    }, 100) 
-    this.props.pageLoaded();
-  }
+  useEffect(() => {
+    showProgressBar(false);
+    pageLoaded();
+  }, []);
 
-  render() {
-    return (
-      <Login onSubmit={this.onSubmit} />
-    );
-  }
+  return (
+    <React.Fragment>
+      <Login />
+      <div style={{ marginBottom: 14 }}></div>
+    </React.Fragment>
+  )
 }
 
 const mapStateToProps = state => ({
@@ -41,22 +37,24 @@ const mapDispatchToProps = dispatch => ({
   pageLoaded: () => dispatch({ type: actions.SIGNIN_PAGE_LOADED }),
 })
 
-
 const SignInForm = compose(
-  withRouter,
-  withFirebase,
   withProgressBar,
   connect(mapStateToProps, mapDispatchToProps),
 )(SignInFormBase);
 
-const SignInPage = () => (
-    <div>
-      <h1>SignIn</h1>
+const SignInPage = () => {
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center',  }}>
+      <Title text="Sign In" />
       <SignInForm />
-      <PasswordForgetLink />
-      <SignUpLink />
+
+      <MessageLink text="Dont Have An Account | " linkText="Sign Up" link={ROUTES.SIGN_UP} />
+      <MessageLink text="Forgot Your Password | " linkText="Reset" link={ROUTES.PASSWORD_FORGET} />
+  
     </div>
-);
+  );
+}
 
 export default SignInPage;
 

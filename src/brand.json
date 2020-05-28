@@ -1,4 +1,9 @@
 {
     "brand": "eComm Company",
-    "tagline": "We love to do the things that are stuff."
+    "tagline": "We love to do the things that are stuff.",
+    "color_light": "#887BAF",
+    "color_dark": "#271758",
+    "color_superdark": "#14073A",
+    "color_superlight": "#C0C0C1",
+    "fontFamily": "Arial"
 }
