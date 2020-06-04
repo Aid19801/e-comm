@@ -17,7 +17,7 @@ import ResponsiveNavbar from '../ResponsiveNavbar';
 
 const App = ({ appLoading, appLoaded }) => {
 
-  
+
   useEffect(() => {
     appLoading();
   })
@@ -29,7 +29,8 @@ const App = ({ appLoading, appLoaded }) => {
   return (
     <Router>
 
-      <div>
+      <div className="container-fluid px-0">
+
         <ResponsiveNavbar>
           <Route exact path={ROUTES.LANDING} component={LandingPage} />
           <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
@@ -41,10 +42,10 @@ const App = ({ appLoading, appLoaded }) => {
           <Route path={ROUTES.ABOUT} component={AboutPage} />
           <Route path={ROUTES.ADMIN} component={AdminPage} />
         </ResponsiveNavbar>
-  
+
       </div>
     </Router>
-      );
+  );
 }
 
 const mapStateToProps = state => ({

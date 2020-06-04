@@ -9,6 +9,7 @@ const useStyles = createUseStyles({
     message: {
         backgroundColor: `${brand.color_light} !important`,
         maxWidth: 350,
+        minWidth: 306,
     },
     text: {
         color: `${brand.color_dark} !important`,

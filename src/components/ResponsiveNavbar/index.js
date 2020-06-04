@@ -8,7 +8,7 @@ import { createUseStyles } from 'react-jss';
 import brand from '../../brand.json';
 
 import {
-    Container,
+    Container as SemanticContainer,
     Icon,
     Menu,
     Responsive,
@@ -22,6 +22,14 @@ const getWidth = () => window.innerWidth;
 const useStyles = createUseStyles({
     segment: {
         backgroundColor: `${brand.color_superdark} !important`,
+    },
+    sidebar: {
+        backgroundColor: `${brand.color_superdark} !important`,
+    },
+    semantic_container_override: {
+        marginLeft: '0px !important',
+        paddingLeft: '0px !important',
+        // border: '3px solid red',
     }
 })
 
@@ -55,9 +63,9 @@ function DesktopContainer({ children }) {
                         secondary={!fixed}
                         size='large'
                     >
-                        <Container>
+                        <SemanticContainer>
                             <Navigation hideSideBar={hideFixedMenu} />
-                        </Container>
+                        </SemanticContainer>
                     </Menu>
                     {children}
                 </Segment>
@@ -87,6 +95,7 @@ function MobileContainer({ children }) {
                 onHide={handleSidebarHide}
                 vertical
                 visible={sidebarOpened}
+                className={classes.sidebar}
             >
                 <Navigation hideSideBar={handleSidebarHide} />
             </Sidebar>
@@ -101,13 +110,13 @@ function MobileContainer({ children }) {
                     vertical
                     className={classes.segment}
                 >
-                    <Container>
+                    <SemanticContainer className={classes.semantic_container_override}>
                         <Menu inverted pointing secondary size='large'>
                             <Menu.Item onClick={handleToggle}>
                                 <Icon name='sidebar' />
                             </Menu.Item>
                         </Menu>
-                    </Container>
+                    </SemanticContainer>
                     {children}
                 </Segment>
             </Sidebar.Pusher>
