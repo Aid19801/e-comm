@@ -10,7 +10,7 @@ import * as ROUTES from '../../constants/routes';
 
 
 function SignInFormBase({ showProgressBar, pageLoading, pageLoaded }) {
-  
+
   useEffect(() => {
     showProgressBar(true);
     pageLoading();
@@ -45,13 +45,17 @@ const SignInForm = compose(
 const SignInPage = () => {
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center',  }}>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', }}>
       <Title text="Sign In" />
-      <SignInForm />
+
+      
+
+        <SignInForm />
+      
 
       <MessageLink text="Dont Have An Account | " linkText="Sign Up" link={ROUTES.SIGN_UP} />
       <MessageLink text="Forgot Your Password | " linkText="Reset" link={ROUTES.PASSWORD_FORGET} />
-  
+
     </div>
   );
 }

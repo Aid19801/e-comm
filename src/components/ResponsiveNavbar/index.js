@@ -29,7 +29,6 @@ const useStyles = createUseStyles({
     semantic_container_override: {
         marginLeft: '0px !important',
         paddingLeft: '0px !important',
-        // border: '3px solid red',
     }
 })
 

@@ -5,7 +5,7 @@ import {
 } from 'react-router-dom';
 import { compose } from 'recompose';
 import { connect } from 'react-redux';
-import Navigation from '../Navigation';
+// import Navigation from '../Navigation';
 
 
 import { AboutPage, AdminPage, AccountPage, HomePage, LandingPage, SignInPage, SignOutPage, SignUpPage, PasswordForgetPage } from '../../containers';
@@ -14,6 +14,7 @@ import * as ROUTES from '../../constants/routes';
 import { withAuthentication } from '../Session';
 import * as actions from './constants';
 import ResponsiveNavbar from '../ResponsiveNavbar';
+import Footer from '../Footer';
 
 const App = ({ appLoading, appLoaded }) => {
 
@@ -43,6 +44,7 @@ const App = ({ appLoading, appLoaded }) => {
           <Route path={ROUTES.ADMIN} component={AdminPage} />
         </ResponsiveNavbar>
 
+        <Footer />
       </div>
     </Router>
   );

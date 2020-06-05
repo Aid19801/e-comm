@@ -5,5 +5,25 @@
     "color_dark": "#271758",
     "color_superdark": "#14073A",
     "color_superlight": "#C0C0C1",
-    "fontFamily": "Arial"
+    "color_boxshadow": "mediumslateblue",
+    "fontFamily": "Arial",
+    "landingPageImages": [
+        {
+            "src": "https://images.freeimages.com/images/large-previews/476/chicago-night-traffic-1447010.jpg",
+            "text": "Quick Fire Captions"
+        },
+        {
+            "src": "https://media.istockphoto.com/photos/group-of-multi-ethnic-executives-discussing-during-a-meeting-picture-id692292412",
+            "text": "Points Mean Prizes"
+        },
+        {
+            "src": "https://media.istockphoto.com/photos/get-going-get-growing-picture-id628265890",
+            "text": "Work Hard, Play Hard"
+        },
+        {
+            "src": "https://media.istockphoto.com/photos/woman-sketching-a-business-plan-at-a-creative-office-picture-id912338074",
+            "text": "Delivering To You"
+        }
+    ],
+    "footerText": "eComm Company is a FCA regulated company with a load of text at the bottom telling you things that you may need to know if you're a journalist or regulator. Since 2018 eComm company has been selling things and stuff to people who are invested in the T&S Markets and has flexed-out to other markets wherein FCA regulations may or may not apply. For more information about T&S Markets, please visit https://thingsandstuff.net/regulations or get in touch via the contact us page."
 }

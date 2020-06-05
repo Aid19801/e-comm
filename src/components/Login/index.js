@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
+import Fade from 'react-reveal/Fade';
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
 import { createUseStyles } from 'react-jss';
@@ -63,10 +64,15 @@ function Login({ onSubmit, isLoading, firebase, history, updateStateUserLoginFai
         <Grid textAlign='center' style={{ height: 'auto' }} verticalAlign='middle'>
             <Grid.Column style={{ maxWidth: 450 }}>
 
+            <Fade left delay={1000}>
+            
                 <Header as='h2' textAlign='center' className={classes.header}>
                     <Image src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/female1-512.png" />
                     Log-in to your account
                 </Header>
+
+            </Fade>
+
 
                 <Form size='large' onSubmit={handleSubmit}>
                     <Segment stacked className={classes.segment}>
