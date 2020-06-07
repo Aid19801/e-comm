@@ -32,3 +32,12 @@ code {
   display: flex;
   flex-direction: column;
 }
+
+a, u {
+  text-decoration: none !important;
+}
+
+a:hover {
+  color: white !important;
+  text-decoration: none !important;
+}

@@ -5,9 +5,6 @@
   "dependencies": {
     "bootstrap": "^4.5.0",
     "firebase": "^5.7.3",
-    "lodash-es": "^4.17.15",
-    "lodash-move": "^1.1.1",
-    "lodash.isequalwith": "^4.4.0",
     "react": "^16.8.6",
     "react-bootstrap": "^1.0.1",
     "react-dom": "^16.8.6",
@@ -16,6 +13,7 @@
     "react-reveal": "^1.2.2",
     "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.8",
+    "react-social-sharing": "^3.0.1",
     "react-spinners": "^0.8.3",
     "react-spring": "^8.0.27",
     "react-topbar-progress-indicator": "^2.0.0",

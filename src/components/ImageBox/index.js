@@ -24,11 +24,43 @@ const useStyles = createUseStyles({
         padding: '11%',
         fontSize: '83%'
     },
-    
+
     '@keyframes swirl': {
         from: { boxShadow: `12px 13px 2px ${brand.color_boxshadow}` },
         to: { boxShadow: `12px 13px 32px ${brand.color_boxshadow}` }
     },
+
+
+
+    '@media screen and (min-width: 1300px)': {
+        imageBoxText: {
+            fontSize: '131%',
+            padding: 17,
+        },
+    },
+
+    '@media screen and (max-width: 650px)': {
+        imageBoxText: {
+            top: '122%',
+            width: '250%',
+            left: -43,
+            fontSize: '101%',
+        },
+    },
+
+    '@media screen and (max-width: 573px)': {
+    imageBoxText: {
+        fontSize: '153%',
+        top: '0%',
+    },
+},
+
+    '@media screen and (max-width: 425px)': {
+    imageBoxText: {
+        fontSize: '153%',
+        padding: 5,
+    },
+}
 });
 
 function ImageBox({ src, text }) {

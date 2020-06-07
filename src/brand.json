@@ -1,5 +1,6 @@
 {
     "brand": "eComm Company",
+    "brand_initials": "eC",
     "tagline": "We love to do the things that are stuff.",
     "color_light": "#887BAF",
     "color_dark": "#271758",
@@ -25,5 +26,11 @@
             "text": "Delivering To You"
         }
     ],
-    "footerText": "eComm Company is a FCA regulated company with a load of text at the bottom telling you things that you may need to know if you're a journalist or regulator. Since 2018 eComm company has been selling things and stuff to people who are invested in the T&S Markets and has flexed-out to other markets wherein FCA regulations may or may not apply. For more information about T&S Markets, please visit https://thingsandstuff.net/regulations or get in touch via the contact us page."
+    "jumbotron": {
+        "imgSrc": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
+        "headline": "Tomorrow's tech",
+        "subheading": "solutions today.",
+        "imgAlt": "Aldershot startup web designer"
+    },
+    "footerText": "eComm Company is a FCA regulated company with a load of text at the bottom telling you things that you may need to know if you're a journalist or regulator. Since 2018 eComm company has been selling things and stuff to people who are invested in the T&S Markets and has flexed-out to other markets wherein FCA regulations may or may not apply."
 }

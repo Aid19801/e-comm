@@ -9,12 +9,14 @@ import withProgressBar from '../../components/ProgressBar/with-progressBar';
 import * as actions from './constants';
 import brand from '../../brand.json';
 import withStyles from 'react-jss';
+import Jumbotron from '../../components/JumboTron';
 // import ImageBox from '../../components/ImageBox';
 
 const LazyImageBox = React.lazy(() => import('../../components/ImageBox')); // Lazy-loaded
 
 
 const styles = {
+
   eachBoxContainer: {
     width: '100%',
     height: '100%',
@@ -47,7 +49,7 @@ const styles = {
       background: brand.color_superlight,
       transform: 'skewY(0deg)',
       border: '1px solid grey',
-  },
+    },
   },
 }
 class LandingPage extends Component {
@@ -83,11 +85,11 @@ class LandingPage extends Component {
         </Row>
         <Row>
 
-          {brand.landingPageImages.map(({ src, text}, i) => {
+          {brand.landingPageImages.map(({ src, text }, i) => {
             return (
               <React.Fragment key={i}>
                 <Col sm={3}>
-                  <Fade>
+                  <Fade delay={i === 0 ? 0 : 300}>
                     <div className={classes.eachBoxContainer}>
                       <div className={classes.eachImgContainerOuter}>
                         <div className={classes.eachImgContainerInner}>
@@ -104,6 +106,13 @@ class LandingPage extends Component {
           })}
 
         </Row>
+
+        <span style={{ marginTop: 30 }}></span>
+       
+        <Jumbotron {...brand.jumbotron} />
+
+        <span style={{ marginTop: 200 }}></span>
+
       </div>
     )
   }
