@@ -1,9 +1,41 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { createUseStyles } from 'react-jss';
-import Fade from 'react-reveal/Fade';
 import brand from '../../brand.json';
 
 const useStyles = createUseStyles({
+    eachBoxContainer: {
+        width: '100%',
+        height: '100%',
+        minHeight: '100%',
+        minWidth: '100%',
+        maxHeight: '100%',
+        maxWidth: '100%',
+        padding: 20,
+    },
+    eachImgContainerOuter: {
+        padding: '3%',
+        background: 'beige',
+        transform: 'skewY(2deg)',
+    },
+    eachImgContainerInner: {
+        width: '100%',
+        background: brand.color_light,
+        transform: 'skewY(-2deg)',
+        borderRadius: 5,
+        height: '100%',
+        minHeight: '100%',
+        minWidth: '100%',
+        maxHeight: '100%',
+        maxWidth: '100%',
+        padding: '9%',
+        transition: '.2s ease',
+
+        '&:hover': {
+            background: brand.color_superlight,
+            transform: 'skewY(0deg)',
+            border: '1px solid grey',
+        },
+    },
     eachBoxImage__img_and_text_container: {
         // border: '1px solid red',
         position: 'relative',
@@ -14,23 +46,10 @@ const useStyles = createUseStyles({
         boxShadow: `12px 13px 38px ${brand.color_boxshadow}`,
         animation: '3s linear .1s $swirl',
     },
-    imageBoxText: {
-        color: 'white',
-        background: brand.color_superdark,
-        position: 'absolute',
-        top: '0%',
-        left: '0%',
-        fontFamily: 'lato',
-        padding: '11%',
-        fontSize: '83%'
-    },
-
     '@keyframes swirl': {
         from: { boxShadow: `12px 13px 2px ${brand.color_boxshadow}` },
         to: { boxShadow: `12px 13px 32px ${brand.color_boxshadow}` }
     },
-
-
 
     '@media screen and (min-width: 1300px)': {
         imageBoxText: {
@@ -64,24 +83,23 @@ const useStyles = createUseStyles({
             padding: 5,
         },
     }
+
 });
 
-function ImageBox({ src, text }) {
+function PlaceholderImageBox() {
 
     const classes = useStyles();
 
     return (
-        <React.Fragment>
-            <div className={classes.eachBoxImage__img_and_text_container}>
-
-                <img src={src} alt={Date.now()} className={classes.eachBoxImage} />
-
-                <Fade delay={2500} right>
-                    <p className={classes.imageBoxText}>{text}</p>
-                </Fade>
+        <div className={classes.eachBoxContainer}>
+            <div className={classes.eachImgContainerOuter}>
+                <div className={classes.eachImgContainerInner}>
+                    <div className={classes.eachBoxImage__img_and_text_container}>
+                        <span className={classes.eachBoxImage}></span>
+                    </div>
+                </div>
             </div>
-        </React.Fragment>
-    )
+        </div>
+    );
 }
-
-export default ImageBox;
+export default PlaceholderImageBox;

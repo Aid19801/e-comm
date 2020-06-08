@@ -1,7 +1,7 @@
 {
-    "brand": "eComm Company",
-    "brand_initials": "eC",
-    "tagline": "We love to do the things that are stuff.",
+    "brand": "Agne Digital",
+    "brand_initials": "AD",
+    "tagline": "I love to code FE and other stuff, Dont you!",
     "color_light": "#887BAF",
     "color_dark": "#271758",
     "color_superdark": "#14073A",
@@ -31,6 +31,22 @@
         "headline": "Tomorrow's tech",
         "subheading": "solutions today.",
         "imgAlt": "Aldershot startup web designer"
+    },
+    "smallBanner": {
+        "headline": "An Exciting Digital Presence",
+        "subheading": "captivating design and trackable success is only a click away.",
+        "buttonOneText": "Start Your Journey Now!",
+        "buttonOneLink": "#",
+        "buttonTwoText": "Do Other Stuff!",
+        "buttonTwoLink": "#"
+    },
+    "largeBanner": {
+        "headline": "An Exciting Digital Presence",
+        "subheading": "captivating design and trackable success is only a click away.",
+        "buttonOneText": "Start Your Journey Now!",
+        "buttonOneLink": "#",
+        "buttonTwoText": "Do Other Stuff!",
+        "buttonTwoLink": "#"
     },
     "footerText": "eComm Company is a FCA regulated company with a load of text at the bottom telling you things that you may need to know if you're a journalist or regulator. Since 2018 eComm company has been selling things and stuff to people who are invested in the T&S Markets and has flexed-out to other markets wherein FCA regulations may or may not apply."
 }

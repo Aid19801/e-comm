@@ -10,7 +10,9 @@ import * as actions from './constants';
 import brand from '../../brand.json';
 import withStyles from 'react-jss';
 import Jumbotron from '../../components/JumboTron';
-// import ImageBox from '../../components/ImageBox';
+import SmallBanner from '../../components/SmallBanner';
+import LargeBanner from '../../components/LargeBanner';
+import PlaceholderImageBox from '../../components/ImageBox/placeholder';
 
 const LazyImageBox = React.lazy(() => import('../../components/ImageBox')); // Lazy-loaded
 
@@ -35,7 +37,8 @@ const styles = {
   eachImgContainerInner: {
     width: '100%',
     background: brand.color_light,
-    transform: 'skewY(-2deg)',
+    backgroundImage: `linear-gradient(to right, ${brand.color_light}, grey, ${brand.color_superlight}, white)`,
+    backgroundSize: '300% 100%',
     borderRadius: 5,
     height: '100%',
     minHeight: '100%',
@@ -43,12 +46,13 @@ const styles = {
     maxHeight: '100%',
     maxWidth: '100%',
     padding: '9%',
-    transition: '.2s ease',
+    'moz-transition': 'all .4s ease-in-out',
+    '-o-transition': 'all .4s ease-in-out',
+    '-webkit-transition': 'all .4s ease-in-out',
+    transition: 'all .4s ease-in-out',
 
     '&:hover': {
-      background: brand.color_superlight,
-      transform: 'skewY(0deg)',
-      border: '1px solid grey',
+      backgroundPosition: '100% 0',
     },
   },
 }
@@ -93,7 +97,7 @@ class LandingPage extends Component {
                     <div className={classes.eachBoxContainer}>
                       <div className={classes.eachImgContainerOuter}>
                         <div className={classes.eachImgContainerInner}>
-                          <Suspense fallback={<h1>Loading...</h1>}>
+                          <Suspense fallback={ <PlaceholderImageBox /> }>
                             <LazyImageBox src={src} text={text} />
                           </Suspense>
                         </div>
@@ -110,6 +114,14 @@ class LandingPage extends Component {
         <span style={{ marginTop: 30 }}></span>
        
         <Jumbotron {...brand.jumbotron} />
+
+        <span style={{ marginTop: 30 }}></span>
+        
+        <SmallBanner {...brand.smallBanner} />
+
+        <span style={{ marginTop: 30 }}></span>
+
+        
 
         <span style={{ marginTop: 200 }}></span>
 
