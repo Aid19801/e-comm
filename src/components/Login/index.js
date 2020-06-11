@@ -13,7 +13,7 @@ import brand from '../../brand.json';
 
 const useStyles = createUseStyles({
     header: {
-        color: `${brand.color_light} !important`,
+        color: `${brand.color_dark} !important`,
     },
     button: {
         backgroundColor: `${brand.color_dark} !important`,

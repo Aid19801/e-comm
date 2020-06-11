@@ -4,7 +4,7 @@ import brand from '../../brand.json';
 
 const useStyles = createUseStyles({
     title: {
-        color: `${brand.color_superlight}`,
+        color: `${brand.color_superdark}`,
         fontFamily: `${brand.fontFamily}`,
     }
 });

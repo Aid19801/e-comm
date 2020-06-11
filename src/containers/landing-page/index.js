@@ -1,4 +1,4 @@
-import React, { Component, Suspense } from 'react';
+import React, { Component, Suspense, useEffect, useState, useRef } from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import Fade from 'react-reveal/Fade';
@@ -8,130 +8,194 @@ import Title from '../../components/Title';
 import withProgressBar from '../../components/ProgressBar/with-progressBar';
 import * as actions from './constants';
 import brand from '../../brand.json';
-import withStyles from 'react-jss';
+import withStyles, { createUseStyles } from 'react-jss';
 import Jumbotron from '../../components/JumboTron';
 import SmallBanner from '../../components/SmallBanner';
 import LargeBanner from '../../components/LargeBanner';
 import PlaceholderImageBox from '../../components/ImageBox/placeholder';
 
-const LazyImageBox = React.lazy(() => import('../../components/ImageBox')); // Lazy-loaded
+import { TweenMax, Power3 } from 'gsap';
 
+// const LazyImageBox = React.lazy(() => import('../../components/ImageBox')); // Lazy-loaded
 
-const styles = {
-
-  eachBoxContainer: {
-    width: '100%',
-    height: '100%',
-    minHeight: '100%',
-    minWidth: '100%',
-    maxHeight: '100%',
-    maxWidth: '100%',
-    padding: 20,
-
+const useStyles = createUseStyles({
+  section: {
+    height: '70vh',
+    width: '100vw',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  eachImgContainerOuter: {
-    padding: '3%',
-    background: 'beige',
-    transform: 'skewY(2deg)',
+  heading: {
+    color: brand.color_dark,
+    fontSize: '12vh',
+    opacity: '0.2',
   },
-  eachImgContainerInner: {
+  subheading: {
+    color: brand.color_superdark,
+    opacity: 0,
+  },
+  menuContainer: {
+    display: 'flex',
+    flexDirection: 'row',
     width: '100%',
-    background: brand.color_light,
-    backgroundImage: `linear-gradient(to right, ${brand.color_light}, grey, ${brand.color_superlight}, white)`,
-    backgroundSize: '300% 100%',
-    borderRadius: 5,
-    height: '100%',
-    minHeight: '100%',
-    minWidth: '100%',
-    maxHeight: '100%',
-    maxWidth: '100%',
-    padding: '9%',
-    'moz-transition': 'all .4s ease-in-out',
-    '-o-transition': 'all .4s ease-in-out',
-    '-webkit-transition': 'all .4s ease-in-out',
-    transition: 'all .4s ease-in-out',
-
+    justifyContent: 'space-evenly',
+    marginTop: 30,
+  },
+  menuDivContainer: {
+    // opacity: 0,
+    marginRight: 10,
+    padding: '10px 25px 10px 25px',
+    minWidth: 240,
+    background: brand.color_dark,
+    borderRadius: 25,
+    boxShadow: `2px 5px 22px ${brand.color_dark}`,
+    transition: '.2s ease',
     '&:hover': {
-      backgroundPosition: '100% 0',
+      background: 'orange',
+      color: 'black !important',
+      opacity: 1,
     },
   },
-}
-class LandingPage extends Component {
+  menuOption: {
+    color: brand.color_light,
+    opacity: .3,
+    '&:hover': {
+      color: 'white !important',
+      opacity: 1,
+    },
+  },
 
-  constructor() {
-    super();
-    this.state = {}
+  divSpanRedLineRef: {
+    // borderBottom: '4px solid red',
+    height: 5,
+    
+    marginTop: 46,
+
+    background: 'red',
+    borderRadius: 30,
+  },
+
+  '@media screen and (max-width: 900px)': {
+    section: {
+      height: '90vh',
+      justifyContent: 'space-between',
+    },
+
+    menuContainer: {
+      flexDirection: 'column',
+      marginTop: 0,
+      alignItems: 'center'
+    },
+    menuDivContainer: {
+      marginBottom: 20,
+      width: 280,
+      marginRight: 0,
+    },
+    menuOption: {
+      opacity: 1,
+    },
   }
+})
 
-  componentWillMount() {
-    this.props.pageLoading();
-    this.props.showProgressBar(true);
-  }
+function LandingPage({ pageLoading, pageLoaded, isMob }) {
 
-  componentDidMount() {
-    setTimeout(() => {
-      this.props.showProgressBar(false);
-    }, 100);
-    this.props.pageLoaded();
-  }
+  let h1ref = useRef(null);
+  let h2ref = useRef(null);
+  let menOneRef = useRef(null);
+  let menTwoRef = useRef(null);
+  let menThreeRef = useRef(null);
+  let menFourRef = useRef(null);
+
+  let divSpanRedLineRef = useRef(null);
+
+  const classes = useStyles();
+
+  useEffect(() => {
+    pageLoading();
+  }, []);
+
+  useEffect(() => {
+    pageLoaded();
+
+    TweenMax.staggerFrom([h1ref], .9, { opacity: 0, x: 60, ease: Power3.easeIn }, .4);
+    TweenMax.to(h2ref, .5, { opacity: 1, x: 6, ease: Power3.easeInOut, delay: 1.5 });
+
+    if (!isMob) { // desktop
+      TweenMax.to(menOneRef, .2, {x: "+=5", yoyo: true, ease: Power3.easeIn, delay: 1.5});
+    
+      TweenMax.to(menTwoRef, .2, {x: "-=5", yoyo: true, ease: Power3.easeIn, delay: 1.55});
+  
+      TweenMax.to(menThreeRef, .2, {x: "+=5", yoyo: true, ease: Power3.easeIn, delay: 1.99});
+      
+      TweenMax.to(menFourRef, .2, {x: "-=5", yoyo: true, ease: Power3.easeIn, delay: 2.25});
+
+    }
+    
+    if (isMob) { // mobile
+      TweenMax.fromTo(menOneRef, .4, { opacity: 0 }, { opacity: 1, ease: Power3.easeIn, delay: 1.5 });
+      TweenMax.fromTo(menTwoRef, .4, { opacity: 0 }, { opacity: 1, ease: Power3.easeIn, delay: 1.7 });
+      TweenMax.fromTo(menThreeRef, .4, { opacity: 0 }, { opacity: 1, ease: Power3.easeIn, delay: 1.9 });
+      TweenMax.fromTo(menFourRef, .4, { opacity: 0 }, { opacity: 1, ease: Power3.easeIn, delay: 2 });
+    }
+
+  }, []);
+
+  useEffect(() => {
+    TweenMax.fromTo(divSpanRedLineRef, .4, { width: 0 }, { width: '82%', ease: Power3.easeIn, delay: 2 });
+  }, [])
+
+  return (
+    <React.Fragment>
+      <Row>
+        <Col sm={12}>
+          <div className={classes.section}>
+
+            <h1 ref={ref => h1ref = ref} className={classes.heading}>{brand.brand}</h1>
+            <h2 ref={ref => h2ref = ref} className={classes.subheading}>{brand.tagline}</h2>
+
+            <div className={classes.menuContainer}>
+              <div ref={ref => menOneRef = ref} className={classes.menuDivContainer}>
+                <h2 className={classes.menuOption}>
+                  Clients
+                </h2>
+              </div>
+              <div ref={ref => menTwoRef = ref} className={classes.menuDivContainer}>
+                <h2 className={classes.menuOption}>
+                  Testimonials
+                </h2>
+              </div>
+              <div ref={ref => menThreeRef = ref} className={classes.menuDivContainer}>
+                <h2 className={classes.menuOption}>
+                  Portfolio
+                </h2>
+              </div>
+              <div ref={ref => menFourRef = ref} className={classes.menuDivContainer}>
+                <h2 className={classes.menuOption}>
+                  Contact
+                </h2>
+              </div>
+            </div>
+
+            <div ref={ref => divSpanRedLineRef = ref} className={classes.divSpanRedLineRef}>yeah!</div>
+
+          </div>
+
+        </Col>
 
 
-  render() {
+      </Row>
 
-    const { classes } = this.props;
 
-    return (
-      <div className="flex-center">
-        <Row>
-          <Col sm={12}>
-            <Title text={brand.brand} />
-          </Col>
-        </Row>
-        <Row>
 
-          {brand.landingPageImages.map(({ src, text }, i) => {
-            return (
-              <React.Fragment key={i}>
-                <Col sm={3}>
-                  <Fade delay={i === 0 ? 0 : 300}>
-                    <div className={classes.eachBoxContainer}>
-                      <div className={classes.eachImgContainerOuter}>
-                        <div className={classes.eachImgContainerInner}>
-                          <Suspense fallback={ <PlaceholderImageBox /> }>
-                            <LazyImageBox src={src} text={text} />
-                          </Suspense>
-                        </div>
-                      </div>
-                    </div>
-                  </Fade>
-                </Col>
-              </React.Fragment>
-            )
-          })}
-
-        </Row>
-
-        <span style={{ marginTop: 30 }}></span>
-       
-        <Jumbotron {...brand.jumbotron} />
-
-        <span style={{ marginTop: 30 }}></span>
-        
-        <SmallBanner {...brand.smallBanner} />
-
-        <span style={{ marginTop: 30 }}></span>
-
-        
-
-        <span style={{ marginTop: 200 }}></span>
-
-      </div>
-    )
-  }
+    </React.Fragment>
+  )
 }
 
 const mapStateToProps = state => ({
   isLoading: state.landingPage.isLoading,
+  isMob: state.appState.isMob,
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -140,7 +204,6 @@ const mapDispatchToProps = dispatch => ({
 })
 
 export default compose(
-  withStyles(styles),
-  withProgressBar,
+  // withProgressBar,
   connect(mapStateToProps, mapDispatchToProps),
 )(LandingPage);

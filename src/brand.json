@@ -1,12 +1,12 @@
 {
-    "brand": "Agne Digital",
-    "brand_initials": "AD",
-    "tagline": "I love to code FE and other stuff, Dont you!",
-    "color_light": "#887BAF",
-    "color_dark": "#271758",
-    "color_superdark": "#14073A",
-    "color_superlight": "#C0C0C1",
-    "color_boxshadow": "mediumslateblue",
+    "brand": "APT Digital",
+    "brand_initials": "APT",
+    "tagline": "Digital Excellence",
+    "color_light": "rgb(242, 242, 242)",
+    "color_superlight": "rgb(255, 255, 255)",
+    "color_dark": "rgb(152, 152, 152)",
+    "color_superdark": "rgb(106, 104, 104)",
+    "color_boxshadow": "black",
     "fontFamily": "Arial",
     "landingPageImages": [
         {

@@ -20,8 +20,13 @@ import {
 const getWidth = () => window.innerWidth;
 
 const useStyles = createUseStyles({
+    mobileHamburgerOverride: {
+        color: `${brand.color_dark} !important`,
+    },
     segment: {
-        backgroundColor: `${brand.color_superdark} !important`,
+        // background: `linear-gradiant(to top, ${brand.color_superlight} 65%, ${brand.color_light} 20% ) !important`,
+        // backgroundColor: `red !important`,
+        background: `linear-gradient(30deg, ${brand.color_light} -27%, ${brand.color_superlight} 96%) !important`
     },
     sidebar: {
         backgroundColor: `${brand.color_superdark} !important`,
@@ -29,7 +34,8 @@ const useStyles = createUseStyles({
     semantic_container_override: {
         marginLeft: '0px !important',
         paddingLeft: '0px !important',
-    }
+    },
+    
 })
 
 
@@ -61,6 +67,7 @@ function DesktopContainer({ children }) {
                         pointing={!fixed}
                         secondary={!fixed}
                         size='large'
+                        style={{ border: 'none' }}
                     >
                         <SemanticContainer>
                             <Navigation hideSideBar={hideFixedMenu} />
@@ -110,9 +117,9 @@ function MobileContainer({ children }) {
                     className={classes.segment}
                 >
                     <SemanticContainer className={classes.semantic_container_override}>
-                        <Menu inverted pointing secondary size='large'>
+                        <Menu inverted pointing secondary size='large' style={{ border: 'none' }}>
                             <Menu.Item onClick={handleToggle}>
-                                <Icon name='sidebar' />
+                                <p className={classes.mobileHamburgerOverride}>M</p>
                             </Menu.Item>
                         </Menu>
                     </SemanticContainer>

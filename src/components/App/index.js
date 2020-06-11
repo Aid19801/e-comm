@@ -11,21 +11,23 @@ import { connect } from 'react-redux';
 import { AboutPage, AdminPage, AccountPage, HomePage, LandingPage, SignInPage, SignOutPage, SignUpPage, PasswordForgetPage } from '../../containers';
 
 import * as ROUTES from '../../constants/routes';
+import { setDeviceIsMobile } from './actions';
 import { withAuthentication } from '../Session';
 import * as actions from './constants';
 import ResponsiveNavbar from '../ResponsiveNavbar';
 import Footer from '../Footer';
 
-const App = ({ appLoading, appLoaded }) => {
+const App = ({ appLoading, appLoaded, updateStateDeviceIsMobile }) => {
 
 
   useEffect(() => {
+    updateStateDeviceIsMobile(window.innerWidth < 900)
     appLoading();
-  })
+  }, [])
 
   useEffect(() => {
     appLoaded();
-  })
+  }, []);
 
   return (
     <Router>
@@ -44,7 +46,6 @@ const App = ({ appLoading, appLoaded }) => {
           <Route path={ROUTES.ADMIN} component={AdminPage} />
         </ResponsiveNavbar>
 
-        <Footer />
       </div>
     </Router>
   );
@@ -59,6 +60,7 @@ const mapDispatchToProps = dispatch => ({
   appLoading: () => dispatch({ type: actions.APP_LOADING }),
   appLoaded: () => dispatch({ type: actions.APP_LOADED }),
   appFailed: () => dispatch({ type: actions.APP_FAILED }),
+  updateStateDeviceIsMobile: (isMob) => dispatch(setDeviceIsMobile(isMob)),
 })
 
 

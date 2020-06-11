@@ -27,23 +27,23 @@ const NavigationAuth = ({ hideSideBar, history }) => {
   return (
     <React.Fragment>
       <Menu.Item name='Landing'>
-        <div onClick={() => handleClick(ROUTES.LANDING)}>Logo</div>
+        <div onClick={() => handleClick(ROUTES.LANDING)} style={{ color: brand.color_dark }}>Logo</div>
       </Menu.Item>
   
       <Menu.Item name='About'>
-        <div onClick={() => handleClick(ROUTES.ABOUT)}>About</div>
+        <div onClick={() => handleClick(ROUTES.ABOUT)} style={{ color: brand.color_dark }}>About</div>
       </Menu.Item>
   
       <Menu.Item name='Account'>
-        <div onClick={() => handleClick(ROUTES.ACCOUNT)}>Account</div>
+        <div onClick={() => handleClick(ROUTES.ACCOUNT)} style={{ color: brand.color_dark }}>Account</div>
       </Menu.Item>
   
       <Menu.Item name='Admin'>
-        <div onClick={() => handleClick(ROUTES.ADMIN)}>Admin</div>
+        <div onClick={() => handleClick(ROUTES.ADMIN)} style={{ color: brand.color_dark }}>Admin</div>
       </Menu.Item>
   
       <Menu.Item name='signout' position='right'>
-        <div onClick={() => handleClick(ROUTES.SIGN_OUT)}>Sign Out</div>
+        <div onClick={() => handleClick(ROUTES.SIGN_OUT)} style={{ color: brand.color_dark }}>Sign Out</div>
       </Menu.Item>
     </React.Fragment>
   );
@@ -60,14 +60,14 @@ const NavigationNonAuth = ({ hideSideBar, history }) => {
   return (
     <React.Fragment>
       <Menu.Item name='Landing'>
-        <div onClick={() => handleClick(ROUTES.LANDING)}>{brand.brand}</div>
+        <div onClick={() => handleClick(ROUTES.LANDING)} style={{ color: brand.color_dark }}>{brand.brand}</div>
       </Menu.Item>
   
       <Menu.Item
         name='Sign In'
         position='right'
       >
-        <div onClick={() => handleClick(ROUTES.SIGN_IN)}>Sign In</div>
+        <div onClick={() => handleClick(ROUTES.SIGN_IN)} style={{ color: brand.color_dark }}>Sign In</div>
       </Menu.Item>
   
     </React.Fragment>
