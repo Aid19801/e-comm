@@ -1,30 +1,23 @@
 import React, { Component, Suspense, useEffect, useState, useRef } from 'react';
+import { useIntersection } from 'react-use';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
-import Fade from 'react-reveal/Fade';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Title from '../../components/Title';
-import withProgressBar from '../../components/ProgressBar/with-progressBar';
 import * as actions from './constants';
 import brand from '../../brand.json';
-import withStyles, { createUseStyles } from 'react-jss';
-import Jumbotron from '../../components/JumboTron';
-import SmallBanner from '../../components/SmallBanner';
-import LargeBanner from '../../components/LargeBanner';
-import PlaceholderImageBox from '../../components/ImageBox/placeholder';
+import { createUseStyles } from 'react-jss';
 
 import { TweenMax, Power3 } from 'gsap';
-
-// const LazyImageBox = React.lazy(() => import('../../components/ImageBox')); // Lazy-loaded
+import gsap from 'gsap';
 
 const useStyles = createUseStyles({
   section: {
-    height: '70vh',
+    height: '93vh',
     width: '100vw',
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
+    justifyContent: 'space-evenly',
     alignItems: 'center',
   },
   heading: {
@@ -46,7 +39,7 @@ const useStyles = createUseStyles({
   menuDivContainer: {
     // opacity: 0,
     marginRight: 10,
-    padding: '10px 25px 10px 25px',
+    // padding: '10px 25px 10px 25px',
     minWidth: 240,
     background: brand.color_dark,
     borderRadius: 25,
@@ -60,6 +53,8 @@ const useStyles = createUseStyles({
   },
   menuOption: {
     color: brand.color_light,
+    width: '100%',
+    padding: '15px 25px 15px 25px',
     opacity: .3,
     '&:hover': {
       color: 'white !important',
@@ -73,8 +68,37 @@ const useStyles = createUseStyles({
     
     marginTop: 46,
 
-    background: 'red',
+    background: 'orange',
     borderRadius: 30,
+  },
+
+  sectionSecond: {
+    height: 'auto'
+  },
+  blog: {
+    height: 'auto',
+    width: '99vw',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingTop: 120,
+  },
+
+  sectionThird: {
+    height: '90vh',
+    width: '100%',
+    border: '1px solid red',
+    display: 'flex',
+    justifyContent: 'center',
+
+  },
+
+  circlesContainer: {
+    display: 'flex',
+    justifyContent: 'space-around',
+    flexDirection: 'row',
+    width: '90%',
   },
 
   '@media screen and (max-width: 900px)': {
@@ -110,6 +134,29 @@ function LandingPage({ pageLoading, pageLoaded, isMob }) {
 
   let divSpanRedLineRef = useRef(null);
 
+  let sectionRef = useRef(null);
+  let thirdSectionRef = useRef(null);
+
+
+  const intersection = useIntersection(sectionRef, {
+    root: null,
+    rootMargin: "200px",
+    threshold: .8, // have we reached the whole intersection 1 = yes, 0 = no
+  });
+
+  const intersectionTwo = useIntersection(thirdSectionRef, {
+    root: null,
+    rootMargin: "400px",
+    threshold: .8,
+  })
+
+  const circleStyles = {
+    height: 50,
+    width: 50,
+    borderRadius: 150,
+    background: 'orange',
+  }
+
   const classes = useStyles();
 
   useEffect(() => {
@@ -143,8 +190,35 @@ function LandingPage({ pageLoading, pageLoaded, isMob }) {
   }, []);
 
   useEffect(() => {
-    TweenMax.fromTo(divSpanRedLineRef, .4, { width: 0 }, { width: '82%', ease: Power3.easeIn, delay: 2 });
-  }, [])
+    TweenMax.fromTo(divSpanRedLineRef, .4, { width: 0 }, { width: '82%', ease: Power3.easeIn, delay: 2.3 });
+  }, []);
+
+  const fadeIn = (element) => {
+    gsap.to(element, 1, {
+      opacity: 1,
+      y: -60,
+      ease: 'power4.out',
+      stagger: {
+        amount: .3,
+      }
+    })
+  }
+
+  const fadeOut = (element) => {
+    gsap.to(element, 1, {
+      opacity: 0,
+      y: -20,
+      ease: 'power4.out',
+    })
+  }
+
+  intersection && intersection.intersectionRatio < .8 ?
+  fadeOut('.fadeIn') // Not Reached
+  : fadeIn('.fadeIn'); // Reached so animate
+
+  intersectionTwo && intersectionTwo.intersectionRatio < .5 ?
+  fadeOut('.fadeInCircle') // Not Reached
+  : fadeIn('.fadeInCircle'); // Reached so animate
 
   return (
     <React.Fragment>
@@ -178,8 +252,47 @@ function LandingPage({ pageLoading, pageLoaded, isMob }) {
               </div>
             </div>
 
-            <div ref={ref => divSpanRedLineRef = ref} className={classes.divSpanRedLineRef}>yeah!</div>
+            <div ref={ref => divSpanRedLineRef = ref} className={classes.divSpanRedLineRef}></div>
 
+          </div>
+
+        </Col>
+        <Col sm={12}>
+          <div ref={sectionRef} className={classes.sectionSecond}>
+
+            <div className={classes.blog}>
+
+              <img
+                src={require('./dev2.png')}
+                className="fadeIn"
+                style={{ 
+                  height: 250, 
+                  width: 250, 
+                  marginBottom: 40, 
+                  opacity: 1,
+                  boxShadow: '2px 5px 22px rgb(152, 152, 152)',
+                  borderRadius: 150
+                }}
+              />
+
+
+              <p style={{ color: 'black', textAlign: 'center', fontSize: 30, width: '80%', color: brand.color_dark, marginTop: isMob ? 0 : 40 }} className="fadeIn">Six years of Digital Design & Software Development by Technology professionals</p>
+
+
+            </div>
+          </div>
+
+        </Col>
+
+        <Col sm={12}>
+          <div ref={thirdSectionRef} className={classes.sectionThird}>
+
+            <div className={classes.circlesContainer}>
+                  <div className="fadeInCircle" style={circleStyles}></div>
+                  <div className="fadeInCircle" style={circleStyles} ></div>
+                  <div className="fadeInCircle" style={circleStyles} ></div>
+            </div>
+            
           </div>
 
         </Col>
