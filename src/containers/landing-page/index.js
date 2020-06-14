@@ -65,7 +65,7 @@ const useStyles = createUseStyles({
   divSpanRedLineRef: {
     // borderBottom: '4px solid red',
     height: 5,
-    
+
     marginTop: 46,
 
     background: 'orange',
@@ -88,7 +88,7 @@ const useStyles = createUseStyles({
   sectionThird: {
     height: 'auto',
     width: '100%',
-    border: '1px solid red',
+    // border: '1px solid red',
     display: 'flex',
     justifyContent: 'center',
     paddingTop: 40,
@@ -101,6 +101,48 @@ const useStyles = createUseStyles({
     justifyContent: 'space-around',
     flexDirection: 'row',
     width: '90%',
+  },
+
+  cardImageContainer: {
+    overflow: 'hidden',
+    boxSizing: 'content-box',
+    margin: 0,
+    maxHeight: 'calc(200px * 2)',
+    fontSize: '100%',
+    font: 'inherit',
+    verticalAlign: 'baseline',
+    border: '5px solid beige',
+    borderRadius: 25,
+  },
+  cardsItemImage: {
+    fontFamily: 'object-fit:cover',
+    objectFit: 'cover',
+    position: 'relative',
+    width: '100%',
+    
+  },
+
+  cardImage: {
+    height: '100%',
+    width: '100%',
+    borderRadius: 25,
+
+    // fontFamily: "object-fit:cover",
+    // '-o-object-fit': 'cover',
+    // objectFit: 'cover',
+
+
+    // display: 'block',
+    // boxShadow: '2px 5px 22px rgb(152, 152, 152)',
+
+    '-webkit-transition': '.6s ease',
+    transition: '.6s ease',
+
+    '&:hover': {
+      maxWidth: '120%',
+      width: '120%',
+      height: '120%',
+    }
   },
 
   '@media screen and (max-width: 900px)': {
@@ -123,9 +165,9 @@ const useStyles = createUseStyles({
       opacity: 1,
     },
 
-  divSpanRedLineRef: {
-    marginTop: 10,
-  },
+    divSpanRedLineRef: {
+      marginTop: 10,
+    },
   }
 })
 
@@ -140,17 +182,17 @@ function LandingPage({ pageLoading, pageLoaded, isMob }) {
 
   let divSpanRedLineRef = useRef(null);
 
-  let sectionRef = useRef(null);
+  let sectionRef = useRef(null); // photo & tagline
   let thirdSectionRef = useRef(null);
 
 
-  const intersection = useIntersection(sectionRef, {
+  const intersection = useIntersection(sectionRef, { // emoji art and tagline animation
     root: null,
-    rootMargin: "200px",
+    rootMargin: "-50px",
     threshold: .8, // have we reached the whole intersection 1 = yes, 0 = no
   });
 
-  const intersectionTwo = useIntersection(thirdSectionRef, {
+  const intersectionTwo = useIntersection(thirdSectionRef, { // circles animastion
     root: null,
     rootMargin: "400px",
     threshold: .8,
@@ -176,16 +218,16 @@ function LandingPage({ pageLoading, pageLoaded, isMob }) {
     TweenMax.to(h2ref, .5, { opacity: 1, x: 6, ease: Power3.easeInOut, delay: 1.5 });
 
     if (!isMob) { // desktop
-      TweenMax.to(menOneRef, .2, {x: "+=5", yoyo: true, ease: Power3.easeIn, delay: 1.5});
-    
-      TweenMax.to(menTwoRef, .2, {x: "-=5", yoyo: true, ease: Power3.easeIn, delay: 1.55});
-  
-      TweenMax.to(menThreeRef, .2, {x: "+=5", yoyo: true, ease: Power3.easeIn, delay: 1.99});
-      
-      TweenMax.to(menFourRef, .2, {x: "-=5", yoyo: true, ease: Power3.easeIn, delay: 2.25});
+      TweenMax.to(menOneRef, .2, { x: "+=5", yoyo: true, ease: Power3.easeIn, delay: 1.5 });
+
+      TweenMax.to(menTwoRef, .2, { x: "-=5", yoyo: true, ease: Power3.easeIn, delay: 1.55 });
+
+      TweenMax.to(menThreeRef, .2, { x: "+=5", yoyo: true, ease: Power3.easeIn, delay: 1.99 });
+
+      TweenMax.to(menFourRef, .2, { x: "-=5", yoyo: true, ease: Power3.easeIn, delay: 2.25 });
 
     }
-    
+
     if (isMob) { // mobile
       TweenMax.fromTo(menOneRef, .4, { opacity: 0 }, { opacity: 1, ease: Power3.easeIn, delay: 1.5 });
       TweenMax.fromTo(menTwoRef, .4, { opacity: 0 }, { opacity: 1, ease: Power3.easeIn, delay: 1.7 });
@@ -233,12 +275,12 @@ function LandingPage({ pageLoading, pageLoaded, isMob }) {
   }
 
   intersection && intersection.intersectionRatio < .8 ?
-  fadeOut('.fadeIn') // Not Reached
-  : fadeIn('.fadeIn'); // Reached so animate
+    fadeOut('.fadeIn') // Not Reached
+    : fadeIn('.fadeIn'); // Reached so animate
 
   intersectionTwo && intersectionTwo.intersectionRatio < .5 ?
-  slideIn('.fadeInCircle') // Not Reached
-  : slideOut('.fadeInCircle'); // Reached so animate
+    slideIn('.fadeInCircle') // Not Reached
+    : slideOut('.fadeInCircle'); // Reached so animate
 
   return (
     <React.Fragment>
@@ -285,10 +327,10 @@ function LandingPage({ pageLoading, pageLoaded, isMob }) {
               <img
                 src={require('./dev2.png')}
                 className="fadeIn"
-                style={{ 
-                  height: 250, 
-                  width: 250, 
-                  marginBottom: 40, 
+                style={{
+                  height: 250,
+                  width: 250,
+                  marginBottom: 40,
                   opacity: 1,
                   boxShadow: '2px 5px 22px rgb(152, 152, 152)',
                   borderRadius: 150
@@ -308,14 +350,44 @@ function LandingPage({ pageLoading, pageLoaded, isMob }) {
           <div ref={thirdSectionRef} className={classes.sectionThird}>
 
             <div className={classes.circlesContainer}>
-                  <div className="fadeInCircle" style={circleStyles}></div>
-                  <div className="fadeInCircle" style={circleStyles}></div>
-                  <div className="fadeInCircle" style={circleStyles}></div>
+              <div className="fadeInCircle" style={circleStyles}></div>
+              <div className="fadeInCircle" style={circleStyles}></div>
+              <div className="fadeInCircle" style={circleStyles}></div>
             </div>
-            
+
           </div>
 
         </Col>
+
+        <Col sm={7}>
+
+          <div
+            className={classes.cardImageContainer}
+          >
+            <div
+              className={classes.cardsItemImage}
+            >
+              <img src={brand.landingPageImages[0].src} alt="startup london" className={classes.cardImage} />
+            </div>
+          </div>
+
+
+        </Col>
+
+        <Col sm={5}>
+
+          <div
+            className={classes.cardImageContainer}
+          >
+            <div
+              className={classes.cardsItemImage}
+            >
+              <img src={brand.landingPageImages[1].src} alt="startup london" className={classes.cardImage} />
+            </div>
+          </div>
+
+        </Col>
+
 
 
       </Row>
