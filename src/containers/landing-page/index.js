@@ -86,11 +86,13 @@ const useStyles = createUseStyles({
   },
 
   sectionThird: {
-    height: '90vh',
+    height: 'auto',
     width: '100%',
     border: '1px solid red',
     display: 'flex',
     justifyContent: 'center',
+    paddingTop: 40,
+    paddingBottom: 40,
 
   },
 
@@ -120,6 +122,10 @@ const useStyles = createUseStyles({
     menuOption: {
       opacity: 1,
     },
+
+  divSpanRedLineRef: {
+    marginTop: 10,
+  },
   }
 })
 
@@ -212,13 +218,27 @@ function LandingPage({ pageLoading, pageLoaded, isMob }) {
     })
   }
 
+  const slideIn = element => {
+    gsap.to(element, 1, {
+      x: -60,
+      ease: 'power4.out',
+    })
+  }
+
+  const slideOut = element => {
+    gsap.to(element, 1, {
+      x: 0,
+      ease: 'power4.out',
+    })
+  }
+
   intersection && intersection.intersectionRatio < .8 ?
   fadeOut('.fadeIn') // Not Reached
   : fadeIn('.fadeIn'); // Reached so animate
 
   intersectionTwo && intersectionTwo.intersectionRatio < .5 ?
-  fadeOut('.fadeInCircle') // Not Reached
-  : fadeIn('.fadeInCircle'); // Reached so animate
+  slideIn('.fadeInCircle') // Not Reached
+  : slideOut('.fadeInCircle'); // Reached so animate
 
   return (
     <React.Fragment>
@@ -289,8 +309,8 @@ function LandingPage({ pageLoading, pageLoaded, isMob }) {
 
             <div className={classes.circlesContainer}>
                   <div className="fadeInCircle" style={circleStyles}></div>
-                  <div className="fadeInCircle" style={circleStyles} ></div>
-                  <div className="fadeInCircle" style={circleStyles} ></div>
+                  <div className="fadeInCircle" style={circleStyles}></div>
+                  <div className="fadeInCircle" style={circleStyles}></div>
             </div>
             
           </div>
