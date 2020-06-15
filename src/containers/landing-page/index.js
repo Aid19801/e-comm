@@ -402,12 +402,14 @@ function LandingPage({ pageLoading, pageLoaded, isMob }) {
       </Row>
 
 
-      <Col sm={12}>
-                <div className="d-flex flex-column justify-content-center">
-                    <h3 className="grey">Get in touch now to see how we can electrify your business today</h3>
-                    <p className="grey">sayHi@funkDigitial.com</p>
-                </div>
-      </Col>
+      <Row>
+        <Col sm={12}>
+          <div className="d-flex flex-column justify-content-center shadow-lg p-3 bg-white rounded">
+              <h3 className="grey m-0">{brand.footerTextHeading}</h3>
+              <p className="grey">{brand.footerEmail}</p>
+          </div>
+        </Col>
+      </Row>
 
     </React.Fragment>
   )

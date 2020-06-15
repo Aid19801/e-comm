@@ -1,6 +1,6 @@
 {
-    "brand": "Blah Digital",
-    "brand_initials": "APT",
+    "brand": "Funk Digital",
+    "brand_initials": "F",
     "tagline": "Digital Excellence",
     "color_light": "rgb(242, 242, 242)",
     "color_superlight": "rgb(255, 255, 255)",
@@ -48,5 +48,6 @@
         "buttonTwoText": "Do Other Stuff!",
         "buttonTwoLink": "#"
     },
-    "footerText": "eComm Company is a FCA regulated company with a load of text at the bottom telling you things that you may need to know if you're a journalist or regulator. Since 2018 eComm company has been selling things and stuff to people who are invested in the T&S Markets and has flexed-out to other markets wherein FCA regulations may or may not apply."
+    "footerTextHeading": "Get in touch to see how we can electrify your business today.",
+    "footerEmail": "sayHi@funkDigital.io"
 }
