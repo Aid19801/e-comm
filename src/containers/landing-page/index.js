@@ -7,6 +7,14 @@ import Col from 'react-bootstrap/Col';
 import * as actions from './constants';
 import brand from '../../brand.json';
 import { createUseStyles } from 'react-jss';
+import hoverEffect from 'hover-effect'
+import bw1 from './bw1.jpg';
+import bw2 from './bw2.jpg';
+
+import tech from './tech.jpeg';
+import laptop from './laptop.jpeg';
+
+import diss from './diss.png';
 
 import { TweenMax, Power3 } from 'gsap';
 import gsap from 'gsap';
@@ -103,46 +111,31 @@ const useStyles = createUseStyles({
     width: '90%',
   },
 
-  cardImageContainer: {
-    overflow: 'hidden',
-    boxSizing: 'content-box',
-    margin: 0,
-    maxHeight: 'calc(200px * 2)',
-    fontSize: '100%',
-    font: 'inherit',
-    verticalAlign: 'baseline',
-    border: '5px solid beige',
-    borderRadius: 25,
+  landing: {
+
   },
-  cardsItemImage: {
-    fontFamily: 'object-fit:cover',
-    objectFit: 'cover',
-    position: 'relative',
-    width: '100%',
-    
-  },
+  intro: {
 
-  cardImage: {
-    height: '100%',
-    width: '100%',
-    borderRadius: 25,
-
-    // fontFamily: "object-fit:cover",
-    // '-o-object-fit': 'cover',
-    // objectFit: 'cover',
-
-
-    // display: 'block',
-    // boxShadow: '2px 5px 22px rgb(152, 152, 152)',
-
-    '-webkit-transition': '.6s ease',
-    transition: '.6s ease',
-
-    '&:hover': {
-      maxWidth: '120%',
-      width: '120%',
-      height: '120%',
+    '& h2': {
+      color: 'black',
+    },
+    '& p': {
+      color: 'black',
     }
+  },
+  distortion: {
+    height: 500,
+    width: 'auto',
+
+    '& canvas': {
+      // width: 375,
+      // height: 500,
+      // backgroundSize: 'contain',
+      borderRadius: 85,
+      padding: 40,
+      // marginTop: -40,
+    }
+
   },
 
   '@media screen and (max-width: 900px)': {
@@ -150,7 +143,9 @@ const useStyles = createUseStyles({
       height: '90vh',
       justifyContent: 'space-between',
     },
-
+    sectionThird: {
+      paddingTop: 0,
+    },
     menuContainer: {
       flexDirection: 'column',
       marginTop: 0,
@@ -168,7 +163,19 @@ const useStyles = createUseStyles({
     divSpanRedLineRef: {
       marginTop: 10,
     },
-  }
+
+    distortion: {
+      '& canvas': {
+        width: 375,
+        height: 500,
+        backgroundSize: 'contain',
+        borderRadius: 85,
+        padding: 40,
+        marginTop: -40,
+      }
+    },
+
+}
 })
 
 function LandingPage({ pageLoading, pageLoaded, isMob }) {
@@ -185,10 +192,11 @@ function LandingPage({ pageLoading, pageLoaded, isMob }) {
   let sectionRef = useRef(null); // photo & tagline
   let thirdSectionRef = useRef(null);
 
+  let distortionRef = useRef(null);
 
   const intersection = useIntersection(sectionRef, { // emoji art and tagline animation
     root: null,
-    rootMargin: "-50px",
+    rootMargin: isMob ? "200px" : "-50px",
     threshold: .8, // have we reached the whole intersection 1 = yes, 0 = no
   });
 
@@ -240,6 +248,18 @@ function LandingPage({ pageLoading, pageLoaded, isMob }) {
   useEffect(() => {
     TweenMax.fromTo(divSpanRedLineRef, .4, { width: 0 }, { width: '82%', ease: Power3.easeIn, delay: 2.3 });
   }, []);
+
+
+  useEffect(() => {
+    new hoverEffect({
+      parent: distortionRef,
+      intensity: .2,
+      image1: laptop,
+      image2: tech,
+      displacementImage: diss,
+
+    })
+  }, [])
 
   const fadeIn = (element) => {
     gsap.to(element, 1, {
@@ -359,40 +379,35 @@ function LandingPage({ pageLoading, pageLoaded, isMob }) {
 
         </Col>
 
-        <Col sm={7}>
+        <Col lg={9}>
 
-          <div
-            className={classes.cardImageContainer}
-          >
-            <div
-              className={classes.cardsItemImage}
-            >
-              <img src={brand.landingPageImages[0].src} alt="startup london" className={classes.cardImage} />
-            </div>
-          </div>
+          <div className={classes.landing}>
 
+            <div ref={ref => distortionRef = ref} className={classes.distortion}></div>
 
-        </Col>
-
-        <Col sm={5}>
-
-          <div
-            className={classes.cardImageContainer}
-          >
-            <div
-              className={classes.cardsItemImage}
-            >
-              <img src={brand.landingPageImages[1].src} alt="startup london" className={classes.cardImage} />
-            </div>
           </div>
 
         </Col>
+
+        <Col lg={3} className="d-flex flex-column justify-content-around" style={{ marginBottom: 100 }}>
+
+          <h2 className="d-flex w-100 justify-content-center" style={{ color: 'black', fontSize: '10vh' }}>Simple</h2>
+          <h2 className="d-flex w-100 justify-content-center" style={{ color: 'orange', fontSize: '10vh', fontStyle: 'italic' }}>Elegant</h2>
+          <h2 className="d-flex w-100 justify-content-center" style={{ color: 'black', fontSize: '10vh' }}>Solutions</h2>
+        </Col>
+
 
 
 
       </Row>
 
 
+      <Col sm={12}>
+                <div className="d-flex flex-column justify-content-center">
+                    <h3 className="grey">Get in touch now to see how we can electrify your business today</h3>
+                    <p className="grey">sayHi@funkDigitial.com</p>
+                </div>
+      </Col>
 
     </React.Fragment>
   )
