@@ -3,6 +3,7 @@ import { useIntersection } from 'react-use';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 import * as actions from './actions';
 import brand from '../../brand.json';
 import { createUseStyles } from 'react-jss';
@@ -14,7 +15,7 @@ const useStyles = createUseStyles({
   circlesSection: {
     height: 'auto',
     width: '100%',
-    border: '1px solid red',
+    // border: '1px solid red',
     display: 'flex',
     justifyContent: 'center',
     paddingTop: 40,
@@ -32,7 +33,7 @@ const useStyles = createUseStyles({
   '@media screen and (max-width: 900px)': {
 
     circlesSection: {
-      paddingTop: 0,
+      // paddingTop: 0,
     },
 
   }
@@ -46,8 +47,8 @@ function CirclesSeparator({ componentLoaded, componentLoading, isMob }) {
 
   const intersectionTwo = useIntersection(circlesSectionRef, { // circles animation
     root: null,
-    rootMargin: isMob ? "0px" : "400px",
-    threshold: .8,
+    rootMargin: isMob ? "60px" : "400px",
+    threshold: 1,
   })
 
   const circleStyles = {
@@ -65,39 +66,54 @@ function CirclesSeparator({ componentLoaded, componentLoading, isMob }) {
     componentLoaded();
   }, []);
 
-  const slideIn = element => {
+  const fadeIn = (element) => {
     gsap.to(element, 1, {
-      x: -60,
+      opacity: 1,
+      y: -60,
       ease: 'power4.out',
+      stagger: {
+        amount: .3,
+      }
     })
   }
 
-  const slideOut = element => {
+  const fadeOut = (element) => {
     gsap.to(element, 1, {
-      x: 0,
+      opacity: 0,
+      y: -20,
       ease: 'power4.out',
     })
   }
+  // const intersectionTwo = useIntersection(circlesSectionRef, { // emoji art and tagline animation
+  //   root: null,
+  //   rootMargin: isMob ? "0px" : "-50px",
+  //   threshold: .8, // have we reached the whole intersection 1 = yes, 0 = no
+  // });
 
-  intersectionTwo && intersectionTwo.intersectionRatio < .5 ?
-    slideIn('.fadeInCircle') // Not Reached
-    : slideOut('.fadeInCircle'); // Reached so animate
+
+  intersectionTwo && intersectionTwo.intersectionRatio < .2 ?
+  fadeOut('.fadeInTwo') // Not Reached
+  : fadeIn('.fadeInTwo'); // Reached so animate
 
   return (
     <React.Fragment>
 
-      <Col sm={12}>
-        <div ref={circlesSectionRef} className={classes.circlesSection}>
+      <Row className="mt-150 fadeInTwo">
 
-          <div className={classes.circlesContainer}>
-            <div className="fadeInCircle" style={circleStyles}></div>
-            <div className="fadeInCircle" style={circleStyles}></div>
-            <div className="fadeInCircle" style={circleStyles}></div>
+
+        <Col sm={12}>
+          <div ref={circlesSectionRef} className={classes.circlesSection}>
+
+            <div className={classes.circlesContainer}>
+              <div className="fadeInCircle" style={circleStyles}></div>
+              <div className="fadeInCircle" style={circleStyles}></div>
+              <div className="fadeInCircle" style={circleStyles}></div>
+            </div>
+
           </div>
 
-        </div>
-
-      </Col>
+        </Col>
+      </Row>
 
     </React.Fragment>
   )

@@ -79,23 +79,28 @@ function DistortedImageAndTitle({ componentLoaded, componentLoading, isMob }) {
 
   return (
     <React.Fragment>
-      <Col lg={9}>
 
-        <div className={classes.landing}>
+      <Row className="mt-100">
 
-          <div ref={ref => distortionRef = ref} className={classes.distortion}></div>
+        <Col lg={9}>
 
-        </div>
+          <div className={classes.landing}>
 
-      </Col>
+            <div ref={ref => distortionRef = ref} className={classes.distortion}></div>
 
-      <Col lg={3} className="d-flex flex-column justify-content-around" style={{ marginBottom: 100 }}>
+          </div>
 
-        <h2 className="d-flex w-100 justify-content-center" style={{ color: 'black', fontSize: '10vh' }}>Simple</h2>
-        <h2 className="d-flex w-100 justify-content-center" style={{ color: 'orange', fontSize: '10vh', fontStyle: 'italic' }}>Elegant</h2>
-        <h2 className="d-flex w-100 justify-content-center" style={{ color: 'black', fontSize: '10vh' }}>Solutions</h2>
+        </Col>
 
-      </Col>
+        <Col lg={3} className="d-flex flex-column justify-content-around" style={{ marginBottom: 100 }}>
+
+          <h2 className="d-flex w-100 justify-content-center" style={{ color: 'black', fontSize: '10vh' }}>Simple</h2>
+          <h2 className="d-flex w-100 justify-content-center" style={{ color: 'orange', fontSize: '10vh', fontStyle: 'italic' }}>Elegant</h2>
+          <h2 className="d-flex w-100 justify-content-center" style={{ color: 'black', fontSize: '10vh' }}>Solutions</h2>
+
+        </Col>
+      </Row>
+
 
 
     </React.Fragment>

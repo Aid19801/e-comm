@@ -19,7 +19,6 @@ import Footer from '../Footer';
 
 const App = ({ appLoading, appLoaded, updateStateDeviceIsMobile }) => {
 
-
   useEffect(() => {
     updateStateDeviceIsMobile(window.innerWidth < 900)
     appLoading();

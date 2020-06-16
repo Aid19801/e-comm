@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 import * as actions from './actions';
 import brand from '../../brand.json';
 import { createUseStyles } from 'react-jss';
@@ -68,29 +69,29 @@ const useStyles = createUseStyles({
   },
 
   '@media screen and (max-width: 900px)': {
-        firstSection: {
-        height: '90vh',
-        justifyContent: 'space-between',
-        },
-    
-        menuContainer: {
-        flexDirection: 'column',
-        marginTop: 0,
-        alignItems: 'center'
-        },
-        menuDivContainer: {
-        marginBottom: 20,
-        width: 280,
-        marginRight: 0,
-        },
-        menuOption: {
-        opacity: 1,
-        },
+    firstSection: {
+      height: '90vh',
+      justifyContent: 'space-between',
+    },
 
-        divSpanLineRef: {
-        marginTop: 10,
-        },
-    }
+    menuContainer: {
+      flexDirection: 'column',
+      marginTop: 0,
+      alignItems: 'center'
+    },
+    menuDivContainer: {
+      marginBottom: 20,
+      width: 280,
+      marginRight: 0,
+    },
+    menuOption: {
+      opacity: 1,
+    },
+
+    divSpanLineRef: {
+      marginTop: 10,
+    },
+  }
 })
 
 function LandingTitleMenu({ componentLoaded, componentLoading, isMob }) {
@@ -143,6 +144,9 @@ function LandingTitleMenu({ componentLoaded, componentLoading, isMob }) {
 
   return (
     <React.Fragment>
+      <Row>
+
+
         <Col sm={12}>
           <div className={classes.firstSection}>
 
@@ -153,22 +157,22 @@ function LandingTitleMenu({ componentLoaded, componentLoading, isMob }) {
               <div ref={ref => menOneRef = ref} className={classes.menuDivContainer}>
                 <h2 className={classes.menuOption}>
                   Clients
-                </h2>
+            </h2>
               </div>
               <div ref={ref => menTwoRef = ref} className={classes.menuDivContainer}>
                 <h2 className={classes.menuOption}>
                   Testimonials
-                </h2>
+            </h2>
               </div>
               <div ref={ref => menThreeRef = ref} className={classes.menuDivContainer}>
                 <h2 className={classes.menuOption}>
                   Portfolio
-                </h2>
+            </h2>
               </div>
               <div ref={ref => menFourRef = ref} className={classes.menuDivContainer}>
                 <h2 className={classes.menuOption}>
                   Contact
-                </h2>
+            </h2>
               </div>
             </div>
 
@@ -177,6 +181,7 @@ function LandingTitleMenu({ componentLoaded, componentLoading, isMob }) {
           </div>
 
         </Col>
+      </Row>
     </React.Fragment>
   )
 }
@@ -187,8 +192,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    componentLoading: () => dispatch(actions.landingMenuLoading()),
-    componentLoaded: () => dispatch(actions.landingMenuLoaded()),
+  componentLoading: () => dispatch(actions.landingMenuLoading()),
+  componentLoaded: () => dispatch(actions.landingMenuLoaded()),
 })
 
 export default compose(

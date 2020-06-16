@@ -30,7 +30,6 @@ function LandingPage({ pageLoading, pageLoaded, isMob }) {
 
   return (
     <React.Fragment>
-      <Row>
 
       <LandingTitleMenu />
 
@@ -40,11 +39,7 @@ function LandingPage({ pageLoading, pageLoaded, isMob }) {
 
       <DistortedImageAndTitle />
 
-      </Row>
-
-      <Row>
-       <Footer />
-      </Row>
+      <Footer />
 
     </React.Fragment>
   )
