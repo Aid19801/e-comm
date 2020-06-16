@@ -2,11 +2,14 @@
     "brand": "Funk Digital",
     "brand_initials": "F",
     "tagline": "Digital Excellence",
+
     "color_light": "rgb(242, 242, 242)",
     "color_superlight": "rgb(255, 255, 255)",
     "color_dark": "rgb(152, 152, 152)",
     "color_superdark": "rgb(106, 104, 104)",
     "color_boxshadow": "black",
+    "color_vanityLine": "orange",
+    
     "fontFamily": "Arial",
     "landingPageImages": [
         {

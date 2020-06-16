@@ -91,7 +91,7 @@ const useStyles = createUseStyles({
             // border: '3px solid purple',
         },
     },
-    
+
     '@media screen and (max-width: 800px)': {
         jumbotronImg: {
             width: '95%',
@@ -142,32 +142,30 @@ function Jumbotron({ headline, subheading, imgSrc, imgAlt }) {
     const classes = useStyles();
 
     return (
-        <Row className="w-100">
+
+        <Col sm={12}>
+            <Fade delay={300}>
+                <div className={classes.jumboContainer}>
 
 
-            <Col sm={12}>
-                <Fade delay={300}>
-                    <div className={classes.jumboContainer}>
+                    <div className={classes.desktopJumboTronTextContainer}>
+                        <h2>{headline}</h2>
+                        <h2 style={{ fontWeight: 600 }}>{subheading}</h2>
+                    </div>
+                    <div className={classes.jumboImgContainer}>
 
+                        <img className={classes.jumbotronImg} src={imgSrc} alt={imgAlt} />
 
-                        <div className={classes.desktopJumboTronTextContainer}>
-                            <h2>{headline}</h2>
-                            <h2 style={{ fontWeight: 600 }}>{subheading}</h2>
-                        </div>
-                        <div className={classes.jumboImgContainer}>
-
-                            <img className={classes.jumbotronImg} src={imgSrc} alt={imgAlt} />
-
-                            <div className={classes.mobileJumboTronTextContainer}>
-                                <p className={classes.mobileHeadline}>{headline}</p>
-                                <p className={classes.mobileSubheading}>{subheading}</p>
-                            </div>
+                        <div className={classes.mobileJumboTronTextContainer}>
+                            <p className={classes.mobileHeadline}>{headline}</p>
+                            <p className={classes.mobileSubheading}>{subheading}</p>
                         </div>
                     </div>
-                </Fade>
-            </Col>
+                </div>
+            </Fade>
+        </Col>
 
-        </Row>
+
     );
 }
 export default Jumbotron

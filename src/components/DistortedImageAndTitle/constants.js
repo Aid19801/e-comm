@@ -1,0 +1,4 @@
+
+export const DIST_IMG_LOADING = 'DIST_IMG_LOADING';
+export const DIST_IMG_LOADED = 'DIST_IMG_LOADED';
+export const DIST_IMG_FAILED = 'DIST_IMG_FAILED';

@@ -12,6 +12,12 @@ import signupPageReducer from '../containers/signup-page/reducer';
 import signoutPageReducer from '../containers/signout-page/reducer';
 import loginReducer from '../components/Login/reducer';
 
+
+import LandingTitleMenuReducer from '../components/LandingTitleMenu/reducer';
+import EmojiTaglineReducer from '../components/EmojiAndTagline/reducer';
+import CirclesSeparatorReducer from '../components/CirclesSeparator/reducer';
+import DistortedImageReducer from '../components/DistortedImageAndTitle/reducer';
+
 const RootReducer = combineReducers({
     appState: appStateReducer,
     accountPage: accountPageReducer,
@@ -26,6 +32,10 @@ const RootReducer = combineReducers({
     signoutPage: signoutPageReducer,
 
     login: loginReducer,
+    landingTitleMenu: LandingTitleMenuReducer,
+    emojiTagline: EmojiTaglineReducer,
+    circlesSeparator: CirclesSeparatorReducer,
+    distortedImage: DistortedImageReducer,
 })
 
 export default RootReducer;
