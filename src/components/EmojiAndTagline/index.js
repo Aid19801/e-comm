@@ -85,7 +85,6 @@ function EmojiAndTagline({ componentLoaded, componentLoading, isMob }) {
 
       <Row className="mt-100 bg_orange">
 
-
         <Col sm={12}>
           <div ref={emojiTaglineSectionRef} className={`${classes.emojiTaglineSection} fadeIn`}>
 
@@ -104,7 +103,7 @@ function EmojiAndTagline({ componentLoaded, componentLoading, isMob }) {
               />
 
 
-              <p style={{ textAlign: 'center', fontSize: 30, width: '80%', color: 'white', marginTop: isMob ? 0 : 20 }}>Six years of Digital Design & Software Development by Technology professionals</p>
+              <p style={{ textAlign: 'center', fontSize: 30, width: '80%', color: 'white', marginTop: isMob ? 0 : 0 }}>Six years of Digital Design & Software Development by Technology professionals</p>
 
 
             </div>

@@ -34,6 +34,8 @@ function LandingPage({ pageLoading, pageLoaded, isMob }) {
 
       <LandingTitleMenu />
 
+      <DistortedImageAndTitle />
+
       <FullPageBanner />
 
       <EmojiAndTagline />

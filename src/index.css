@@ -92,3 +92,23 @@ a:hover {
 .boxShadow {
   box-shadow: 2px 5px 22px rgb(152, 152, 152);
 }
+
+.bold {
+  font-weight: bold;
+}
+
+.padding-on {
+  padding: 20px;
+}
+
+.h-auto {
+  height: auto;
+}
+
+.rounded {
+  border-radius: 50%;
+}
+
+.skewRight {
+  transform: skewY(-2deg);
+}

@@ -56,55 +56,43 @@ const useStyles = createUseStyles({
 
 function DistortedImageAndTitle({ componentLoaded, componentLoading, isMob }) {
 
+  let distortionRef = useRef(null);
+
   const classes = useStyles();
-  const titlesRef = useRef(null);
 
   useEffect(() => {
     componentLoading();
   }, []);
 
   useEffect(() => {
+    new hoverEffect({
+      parent: distortionRef,
+      intensity: .2,
+      image1: laptop,
+      image2: tech,
+      displacementImage: diss,
+
+    })
     componentLoaded();
   }, []);
 
 
-  const fadeIn = (element) => {
-    gsap.to(element, 1, {
-      opacity: 1,
-      y: -60,
-      ease: 'power4.out',
-      stagger: {
-        amount: .3,
-      }
-    })
-  }
-
-  const fadeOut = (element) => {
-    gsap.to(element, 1, {
-      opacity: 0,
-      y: -20,
-      ease: 'power4.out',
-    })
-  }
-
-  const intersection = useIntersection(titlesRef, { // emoji art and tagline animation
-    root: null,
-    rootMargin: "200px",
-    threshold: .8, // have we reached the whole intersection 1 = yes, 0 = no
-  });
-
-
-  intersection && intersection.intersectionRatio < .8 ?
-    fadeOut('.fadeInTitles') // Not Reached
-    : fadeIn('.fadeInTitles'); // Reached so animate
-
   return (
     <React.Fragment>
 
-      <Row ref={titlesRef} className="fadeInTitles">
+      <Row className="mt-100">
 
+        <Col lg={9}>
 
-        <Col lg={12} className="d-flex flex-column justify-content-center" style={{ marginBottom: 100, height: '80vh' }}>
+          <div className={classes.landing}>
+
+            <div ref={ref => distortionRef = ref} className={classes.distortion}></div>
+
+          </div>
+
+        </Col>
+
+        <Col lg={3} className="d-flex flex-column justify-content-around" style={{ marginBottom: 100 }}>
 
           <h2 className="d-flex w-100 justify-content-center" style={{ color: 'black', fontSize: '10vh' }}>Simple</h2>
           <h2 className="d-flex w-100 justify-content-center" style={{ color: 'orange', fontSize: '10vh', fontStyle: 'italic' }}>Elegant</h2>

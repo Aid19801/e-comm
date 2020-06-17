@@ -23,10 +23,11 @@ function FullPageBanner({ componentLoading, componentLoaded, isMob }) {
         threshold: .8,
     });
 
+
     const fadeIn = (element) => {
         gsap.to(element, 1, {
             opacity: 1,
-            y: -60,
+            y: -0,
             ease: 'power4.out',
             stagger: {
                 amount: .3,
@@ -37,7 +38,7 @@ function FullPageBanner({ componentLoading, componentLoaded, isMob }) {
     const fadeOut = (element) => {
         gsap.to(element, 1, {
             opacity: 0,
-            y: -20,
+            y: 60,
             ease: 'power4.out',
         })
     }
@@ -55,11 +56,19 @@ function FullPageBanner({ componentLoading, componentLoaded, isMob }) {
     return (
         <>
             <Row className={isMob ? "containContent bg_grey mt-40" : "bg_grey"}>
-                <Col lg={12}>
-                    <div ref={bigFadeIn} style={{ height: '80vh', width: '100%' }} className="fooFade flex-center">
+                <Col lg={6}>
+                    <div ref={bigFadeIn} style={{ width: '100%' }} className="fooFade flex-center responsive-row">
                         <h2 className="d-flex w-100 justify-content-center" style={{ color: 'black', fontSize: '10vh' }}>Simple</h2>
                         <h2 className="d-flex w-100 justify-content-center" style={{ color: 'orange', fontSize: '10vh', fontStyle: 'italic' }}>Elegant</h2>
                         <h2 className="d-flex w-100 justify-content-center" style={{ color: 'black', fontSize: '10vh' }}>Solutions</h2>
+                    </div>
+                </Col>
+                <Col lg={3}>
+
+                    <div className="flex-center h-100">
+                        <div className="flex-center bg_orange h-auto padding-on skewRight">
+                            <h4 className="white">Webapps, Promotional Websites, IOS & Android Apps, APIs and desktop applications.</h4>
+                        </div>
                     </div>
                 </Col>
             </Row>
