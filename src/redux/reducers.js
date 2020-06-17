@@ -16,6 +16,7 @@ import loginReducer from '../components/Login/reducer';
 import LandingTitleMenuReducer from '../components/LandingTitleMenu/reducer';
 import EmojiTaglineReducer from '../components/EmojiAndTagline/reducer';
 import CirclesSeparatorReducer from '../components/CirclesSeparator/reducer';
+import FullPageBannerReducer from '../components/FullPageBanner/reducer';
 import DistortedImageReducer from '../components/DistortedImageAndTitle/reducer';
 
 const RootReducer = combineReducers({
@@ -36,6 +37,7 @@ const RootReducer = combineReducers({
     emojiTagline: EmojiTaglineReducer,
     circlesSeparator: CirclesSeparatorReducer,
     distortedImage: DistortedImageReducer,
+    fullPageBanner: FullPageBannerReducer,
 })
 
 export default RootReducer;

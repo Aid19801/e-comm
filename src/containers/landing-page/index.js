@@ -11,14 +11,15 @@ import * as actions from './constants';
 import brand from '../../brand.json';
 import { createUseStyles } from 'react-jss';
 
+import LandingTitleMenu from '../../components/LandingTitleMenu';
+import FullPageBanner from '../../components/FullPageBanner';
 import EmojiAndTagline from '../../components/EmojiAndTagline';
 import CirclesSeparator from '../../components/CirclesSeparator';
-import LandingTitleMenu from '../../components/LandingTitleMenu';
 import DistortedImageAndTitle from '../../components/DistortedImageAndTitle';
 import Footer from '../../components/Footer';
 
-
 function LandingPage({ pageLoading, pageLoaded, isMob }) {
+
 
   useEffect(() => {
     pageLoading();
@@ -33,13 +34,11 @@ function LandingPage({ pageLoading, pageLoaded, isMob }) {
 
       <LandingTitleMenu />
 
+      <FullPageBanner />
+
       <EmojiAndTagline />
 
-      <CirclesSeparator />
-
-      <DistortedImageAndTitle />
-
-      <Footer />
+      <Footer isMob={isMob} />
 
     </React.Fragment>
   )

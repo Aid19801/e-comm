@@ -28,7 +28,10 @@ const useStyles = createUseStyles({
     // paddingTop: 120,
   },
   '@media screen and (max-width: 900px)': {
-
+    emojiTaglineSection: {
+      paddingBottom: 0,
+      height: 'auto',
+    }
   }
 })
 
@@ -80,7 +83,7 @@ function EmojiAndTagline({ componentLoaded, componentLoading, isMob }) {
   return (
     <React.Fragment>
 
-      <Row className="mt-100">
+      <Row className="mt-100 bg_orange">
 
 
         <Col sm={12}>
@@ -96,13 +99,12 @@ function EmojiAndTagline({ componentLoaded, componentLoading, isMob }) {
                   width: 250,
                   marginBottom: 40,
                   opacity: 1,
-                  boxShadow: '2px 5px 22px rgb(152, 152, 152)',
                   borderRadius: 150
                 }}
               />
 
 
-              <p style={{ color: 'black', textAlign: 'center', fontSize: 30, width: '80%', color: brand.color_dark, marginTop: isMob ? 0 : 40 }}>Six years of Digital Design & Software Development by Technology professionals</p>
+              <p style={{ textAlign: 'center', fontSize: 30, width: '80%', color: 'white', marginTop: isMob ? 0 : 20 }}>Six years of Digital Design & Software Development by Technology professionals</p>
 
 
             </div>
